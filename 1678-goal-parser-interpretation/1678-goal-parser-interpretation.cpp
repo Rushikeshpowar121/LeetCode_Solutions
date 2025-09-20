@@ -1,40 +1,30 @@
 class Solution {
 public:
     string interpret(string command) {
-        int c=0;
-        string s="";
-        int flag=0;
+       stack<char> s;
+       string str="";
 
-        for(int i=0;i<command.size();i++)
+       for(int i=0;i<=command.size()-1;i++)
+       {
+        if(command[i]=='(')
+            s.push(command[i]);
+
+        else if(command[i]==')' && command[i-1]=='l')
         {
-            if(command[i]=='G')
-            {
-                s.push_back('G');
-            }
-            if(command[i]=='(')
-            {
-                flag=1;
-            }
-            if(command[i]=='a' || command[i]=='l')
-            {
-                flag=0;
-            }
-            
-            if(command[i]==')')
-            {
-                if(flag==1)
-                {
-                    s.push_back('o');
-                    flag=0;
-                }
-                else
-                {
-                    s.push_back('a');
-                    s.push_back('l');
-                }
-            }
+            // str+="al";
+            s.pop();
         }
+        else if(command[i]==')' && s.top()=='(')
+        {
+            str.push_back('o');
+            s.pop();
+        }
+        
+        else
+            str+=command[i];
+            
+       }
 
-        return s;
+       return str;
     }
 };
