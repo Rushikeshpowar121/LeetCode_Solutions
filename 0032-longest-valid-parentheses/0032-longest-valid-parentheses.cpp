@@ -14,7 +14,7 @@ public:
 
             if(left==right)
             {
-                maxv = max(maxv, left*2);
+                maxv = max(maxv, right*2);
             }
             if(right>left)
             {
